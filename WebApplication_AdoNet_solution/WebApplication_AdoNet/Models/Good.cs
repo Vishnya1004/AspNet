@@ -12,5 +12,7 @@ namespace WebApplication_AdoNet.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public DateTime DateOfAdding { get; set; }
+
+        int a = 0;
     }
 }
