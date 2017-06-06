@@ -26,27 +26,20 @@
 
         <div>
             @Html.LabelFor(model => model.User, "Users", new { style = "position: relative; left: 128px;" })
-         
-
-            @Html.DropDownListFor(m => m.User, (SelectList)ViewBag.Users)
-
-            @Html.DropDownList("Users", null, "select User",
+            @Html.DropDownList("Users", null, "select a User",
            new {
-               style = "height: 34px; position: relative; left: 152px;" +
-           " padding: 6px 12px; margin-bottom: 16px; font - size: 14px; line - height: 1.4285; color: #555555; vertical-align: middle;" +
-           " background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;" +
-           "-webkit - box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075); " +
-           "-webkit - transition: border-color ease -in-out 0.15s, box-shadow ease -in-out 0.15s; " }
+               css = "form-control"
+           }
                     )
         </div>
 
         <div class="form-group">
             @Html.Label("Goods", new { style = "position: relative; left: 139px;" })
-            @Html.DropDownList("Goods", null,
+            @Html.DropDownList("Goods", null, "select a good",
            new
            {
                style = "height: 34px; position: relative; left: 160px;" +
-           " padding: 6px 12px; margin-bottom: 16px; font - size: 14px; line - height: 1.4285; color: #555555; vertical-align: middle;" +
+           " padding: 6px 12px; margin-bottom: 16px; font - size: 14px; line-height: 1.4285; color: #555555; vertical-align: middle;" +
            " background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;" +
            "-webkit - box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075); " +
            "-webkit - transition: border-color ease -in-out 0.15s, box-shadow ease -in-out 0.15s; "
@@ -58,7 +51,7 @@
                 @Html.TextBox("Quantity", null, new
            {
                style = "height: 34px; position: relative; left: 148px;" +
-           " padding: 6px 12px; margin-bottom: 16px; font - size: 14px; line - height: 1.4285; color: #555555; vertical-align: middle;" +
+           " padding: 6px 12px; margin-bottom: 16px; font - size: 14px; line-height: 1.4285; color: #555555; vertical-align: middle;" +
            " background-color: #ffffff; border: 1px solid #cccccc; border-radius: 4px;" +
            "-webkit - box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075); " +
            "-webkit - transition: border-color ease -in-out 0.15s, box-shadow ease -in-out 0.15s; "

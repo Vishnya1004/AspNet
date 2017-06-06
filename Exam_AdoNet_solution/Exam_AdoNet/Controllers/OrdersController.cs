@@ -18,7 +18,7 @@ namespace Exam_AdoNet.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            return View(db.Orders.ToList());
+            return View(db.Orders.Include(o=>o.User).ToList());
         }
 
         public ActionResult GetUserOrders(int? userId)
@@ -27,8 +27,8 @@ namespace Exam_AdoNet.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            db.Orders.Include(o => o.User);
-            var orders = db.Orders.Where(o => o.User.Id == userId);
+            //db.Orders.Include(o => o.User);
+            var orders = db.Orders.Where(o => o.User.Id == userId).Include(o => o.User);
 
             return View("Index", orders.ToList());
         }
@@ -63,9 +63,19 @@ namespace Exam_AdoNet.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Date,User")] Order order)
+        public ActionResult Create([Bind(Include = "Id,Date")] Order order)
         {
-            User selectedUser = ViewBag.selectedUser;
+            int selectedUserId = Convert.ToInt32(ValueProvider.GetValue("Users").AttemptedValue);
+            int selectedGoodId = Convert.ToInt32(ValueProvider.GetValue("Goods").AttemptedValue);
+            int goodQuantity = Convert.ToInt32(ValueProvider.GetValue("Quantity").AttemptedValue);
+
+            User user = db.Users.Find(selectedUserId);
+            Good good = db.Goods.Find(selectedGoodId);
+            OrderItem orderItem = new OrderItem { Good = good, Order = order, Quantity = goodQuantity};
+
+            db.OrderItems.Add(orderItem);
+            order.User = user;
+            order.OrderItems.Add(orderItem);
 
             if (ModelState.IsValid)
             {

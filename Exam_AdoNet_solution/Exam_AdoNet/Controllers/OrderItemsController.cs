@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Exam_AdoNet.Models;
+using System.Web.Routing;
 
 namespace Exam_AdoNet.Controllers
 {
@@ -18,6 +19,19 @@ namespace Exam_AdoNet.Controllers
         public ActionResult Index()
         {
             return View(db.OrderItems.ToList());
+        }
+
+        public ActionResult ShowUserGoods(int? orderId)
+        {
+            if (orderId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //db.OrderItems.Include(oi => oi.Good);
+            var orderItems = db.OrderItems.Where(oi => oi.Order.Id == orderId).Include(oi => oi.Good).ToList();
+
+
+            return View(orderItems);
         }
 
         // GET: OrderItems/Details/5
@@ -65,7 +79,9 @@ namespace Exam_AdoNet.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OrderItem orderItem = db.OrderItems.Find(id);
+            var orderItem = db.OrderItems.Include(oi => oi.Good).ToList().Find(i=> i.Id==id);
+            
+            
             if (orderItem == null)
             {
                 return HttpNotFound();
@@ -84,7 +100,8 @@ namespace Exam_AdoNet.Controllers
             {
                 db.Entry(orderItem).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var oItemfromdb = db.OrderItems.Include(o=>o.Order).ToList().Find(o=>o.Id == orderItem.Id);
+                return RedirectToAction("ShowUserGoods",  new { orderId = oItemfromdb.Order.Id } );
             }
             return View(orderItem);
         }

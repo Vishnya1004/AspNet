@@ -221,6 +221,11 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\UserTemplate.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\OrderItemTemplate.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\GoodTemplate.cshtml" />
+    <Content Include="Views\OrderItems\ShowUserGoods.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GoodTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
