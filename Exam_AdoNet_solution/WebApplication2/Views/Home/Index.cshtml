@@ -1,0 +1,20 @@
+﻿@model WebApplication2.Models.Good1
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+    @Html.ValidationMessageFor(m => m.Name)
+
+    <input type="submit" value="Register" />
+}
+
+
+
+
+
