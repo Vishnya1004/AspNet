@@ -191,7 +191,22 @@
     <Compile Include="Models\DB\Category.cs" />
     <Compile Include="Models\DB\ActivityMetadata.cs" />
     <Compile Include="Models\DB\CategoryMetadata.cs" />
+    <Compile Include="Models\DB\Discount.cs" />
+    <Compile Include="Models\DB\DiscountMetadata.cs" />
+    <Compile Include="Models\DB\Good.cs" />
+    <Compile Include="Models\DB\GoodMetadata.cs" />
+    <Compile Include="Models\DB\GoodReview.cs" />
+    <Compile Include="Models\DB\GoodReviewMetadata.cs" />
     <Compile Include="Models\DB\NakarematiContext.cs" />
+    <Compile Include="Models\DB\Order.cs" />
+    <Compile Include="Models\DB\OrderItem.cs" />
+    <Compile Include="Models\DB\OrderItemMetadata.cs" />
+    <Compile Include="Models\DB\OrderMetadata.cs" />
+    <Compile Include="Models\DB\Producer.cs" />
+    <Compile Include="Models\DB\ProducerMetadata.cs" />
+    <Compile Include="Models\DB\User.cs" />
+    <Compile Include="Models\DB\UserMetadata.cs" />
+    <Compile Include="Models\DB\ValidationOrderDate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,8 +13,13 @@ namespace NaKaremati.Controllers
         {
             ViewBag.Title = "Home Page";
             NakarematiContext db = new NakarematiContext();
-           
-            db.Categories.Add(new Category { Name = "ccd"});
+
+            db.Activities.Add(new Activity { Name = "Test Activity" });
+            db.Categories.Add(new Category { Name = "Test Category" });
+            db.SaveChanges();
+
+
+
             return View();
         }
     }
