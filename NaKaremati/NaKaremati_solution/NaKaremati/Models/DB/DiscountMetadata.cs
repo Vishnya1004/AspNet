@@ -11,6 +11,8 @@ namespace NaKaremati.Models.DB
         public int Id { get; set; }
         [Required]
         [Range(5, 30, ErrorMessage = "The discount can`t variate in 5% - 30% diapason only!")]
+
         public int Percent { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

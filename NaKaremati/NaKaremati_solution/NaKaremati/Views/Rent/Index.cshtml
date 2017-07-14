@@ -1,0 +1,52 @@
+﻿@model List<NaKaremati.Models.ActivityVM>
+
+@{
+    Layout = "~/Views/Shared/_LayoutRent.cshtml";
+}
+  
+<div class="left-pannel-rent">
+    <ul>
+        @foreach (var activityVM in Model)
+        {
+             <li>
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="@string.Format("#collapse{0}", activityVM.Activity.Id)"
+                   aria-expanded="false" aria-controls="@string.Format("collapse{0}", activityVM.Activity.Id)">
+                    @activityVM.Activity.Name
+                </a>
+                <div class="collapse" id="@string.Format("collapse{0}", activityVM.Activity.Id)">
+                        <ul>
+                            @foreach (var category in activityVM.Categories)
+                            {
+                               <li>@Ajax.ActionLink(category.Name, "GetGoodsByCategory", new { categoryId = category.Id }, new AjaxOptions {
+                                  InsertionMode = InsertionMode.Replace,
+                                  UpdateTargetId = "selectedGoods"})
+                            </li>
+                            }
+                        </ul>
+                 </div>
+             </li>
+        }
+    </ul>
+</div>
+<div id="selectedGoods" class="right-pannel-rent">
+
+</div>
+
+
+
+@section scripts
+{
+    @*Ненавязивый JavaScript для выполнения запроса на сервер без полного обновления страницы*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+
+
+
+
+
+
+
+
+
+

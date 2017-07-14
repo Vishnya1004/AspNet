@@ -51,13 +51,41 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -182,40 +210,110 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ActivitiesController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\RentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DB\Activity.cs" />
-    <Compile Include="Models\DB\Category.cs" />
+    <Compile Include="Models\DB\Activity.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\ActivityMetadata.cs" />
+    <Compile Include="Models\DB\Category.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\CategoryMetadata.cs" />
-    <Compile Include="Models\DB\Discount.cs" />
+    <Compile Include="Models\DB\Discount.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\DiscountMetadata.cs" />
-    <Compile Include="Models\DB\Good.cs" />
+    <Compile Include="Models\DB\Good.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\GoodMetadata.cs" />
-    <Compile Include="Models\DB\GoodReview.cs" />
+    <Compile Include="Models\DB\GoodReview.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\GoodReviewMetadata.cs" />
-    <Compile Include="Models\DB\NakarematiContext.cs" />
-    <Compile Include="Models\DB\Order.cs" />
-    <Compile Include="Models\DB\OrderItem.cs" />
+    <Compile Include="Models\DB\Image.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ImageMetadata.cs" />
+    <Compile Include="Models\DB\ModelDbNaKaremati.Context.cs">
+      <DependentUpon>ModelDbNaKaremati.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\DB\ModelDbNaKaremati.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\DB\ModelDbNaKaremati.Designer.cs">
+      <DependentUpon>ModelDbNaKaremati.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\DB\Order.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\OrderItem.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\OrderItemMetadata.cs" />
     <Compile Include="Models\DB\OrderMetadata.cs" />
-    <Compile Include="Models\DB\Producer.cs" />
+    <Compile Include="Models\DB\Producer.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DB\ProducerExt.cs" />
     <Compile Include="Models\DB\ProducerMetadata.cs" />
-    <Compile Include="Models\DB\User.cs" />
+    <Compile Include="Models\DB\TestUser.cs" />
+    <Compile Include="Models\DB\User.cs">
+      <DependentUpon>ModelDbNaKaremati.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\UserMetadata.cs" />
     <Compile Include="Models\DB\ValidationOrderDate.cs" />
+    <Compile Include="Models\ActivityVM.cs" />
+    <Compile Include="Models\GoodVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\NaKaremati.mdf" />
+    <Content Include="App_Data\NaKaremati_log.ldf">
+      <DependentUpon>NaKaremati.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\bp_blackDiamond_60.jpg" />
+    <Content Include="Content\img\cart.jpg" />
+    <Content Include="Content\img\ct_grivel.jpg" />
+    <Content Include="Content\img\rc_ponchobagTerra.jpg" />
+    <Content Include="Content\img\rsz_bp_blackdiamond_60.jpg" />
+    <Content Include="Content\NaKarematiStyle.css" />
+    <Content Include="Content\NaKarematiStyle.min.css">
+      <DependentUpon>NaKarematiStyle.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Content\img\back.jpg" />
+    <Content Include="Models\DB\ModelDbNaKaremati.Context.tt">
+      <DependentUpon>ModelDbNaKaremati.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelDbNaKaremati.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DB\ModelDbNaKaremati.edmx.diagram">
+      <DependentUpon>ModelDbNaKaremati.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DB\ModelDbNaKaremati.tt">
+      <DependentUpon>ModelDbNaKaremati.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelDbNaKaremati.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -240,10 +338,19 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\NaKarematiScripts.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />
@@ -260,9 +367,28 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Home\Articles.cshtml" />
+    <Content Include="Views\Home\Partners.cshtml" />
+    <Content Include="Views\Home\BePartners.cshtml" />
+    <Content Include="Views\Home\Autorization.cshtml" />
+    <Content Include="Views\Shared\_LayoutRent.cshtml" />
+    <Content Include="Views\Rent\Index.cshtml" />
+    <Content Include="Views\Activities\Create.cshtml" />
+    <Content Include="Views\Activities\Delete.cshtml" />
+    <Content Include="Views\Activities\Details.cshtml" />
+    <Content Include="Views\Activities\Edit.cshtml" />
+    <Content Include="Views\Activities\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Rent\_ViewGoods.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -278,6 +404,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Models\DB\ModelDbNaKaremati.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelDbNaKaremati.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

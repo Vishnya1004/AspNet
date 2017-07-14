@@ -1,0 +1,128 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+table th {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+}
+
+td {
+    text-align: center;
+}
+
+.main-pannel {
+    background: #0066CC;
+    line-height: 5;
+    text-align: center;
+    right: 0px;
+    left: 0px;
+}
+
+.main-pannel a:hover {
+  text-decoration: none;
+}
+
+.main-pannel li {
+    background: #004C99;
+    border-radius: 5px;
+    margin: 5px;
+    width: 10%;
+    height: 10%;
+    display: inline-block;
+    white-space: normal;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.main-photo {
+    background-image: url(/Content/img/back.jpg);
+    background-size:cover;
+    width: 100%;
+    height:550px;
+  }
+
+.main-buttons-container {
+position:relative;
+top: 50%;
+}
+
+.main-button-container {
+    position: relative;
+    width: 50%;
+    padding-left: 60px;
+    padding-right: 60px;
+    float: left;
+ }
+
+.main-button-container a {
+        color: white;
+        text-decoration: none;
+}
+
+.main-button-container a:hover {
+        color: white;
+        text-decoration: none;
+}
+
+/*Rent*/
+.left-pannel-rent {
+    position: relative;
+    float: left;
+    width: 20%;
+    white-space: nowrap;
+    margin-left: 20px;
+    
+    /*border: 2px solid black;
+    border-radius: 5px;*/
+}
+
+.left-pannel-rent li {
+        list-style-type: none;
+        padding-top: 3px;
+}
+
+.search {
+   padding:10px;
+}
+    .search:focus {
+        width: 100%;
+
+    }
+
+.right-pannel-rent {
+    position: relative;
+    float: right;
+    width: 70%;
+    margin-right: 20px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+    .right-pannel-rent li {
+        list-style-type: none;
+        padding-top: 3px;
+    }
+
+.table-head {
+background: grey;
+font-weight:600;
+}
+
+.big-sign {
+    font-size: large;
+}
+
+.button-cart {
+border: none;
+}
+
+  
+
+ 
+
+
+
+

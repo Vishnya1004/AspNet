@@ -11,6 +11,7 @@ namespace NaKaremati.Models.DB
         public int Id { get; set; }
         public Good Good { get; set; }
         public User User { get; set; }
+
         [Required]
         [StringLength(150, ErrorMessage = "To much characters! Please, enter not more than 5!")]
         [MinLength(5, ErrorMessage = "Not enough characters! Please, enter not less than 5!")]

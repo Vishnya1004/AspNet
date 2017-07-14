@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NaKarematiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.CategoryActivities" FromRole="Activities" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Activities" Relationship="Self.CategoryActivities" FromRole="Categories" ToRole="Activities" />
+    <NavigationProperty Name="Goods" Relationship="Self.GoodCategories" FromRole="Categories" ToRole="Goods" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Percent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_dbo_Orders_dbo_Discounts_Discount_Id" FromRole="Discounts" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="GoodReview">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Body" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Good_Id" Type="Int32" />
+    <Property Name="User_Id" Type="Int32" />
+    <NavigationProperty Name="Good" Relationship="Self.FK_dbo_GoodReviews_dbo_Goods_Good_Id" FromRole="GoodReviews" ToRole="Goods" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_GoodReviews_dbo_Users_User_Id" FromRole="GoodReviews" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Good">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RentPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="DepositPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Weigth" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Produser_Id" Type="Int32" />
+    <NavigationProperty Name="GoodReviews" Relationship="Self.FK_dbo_GoodReviews_dbo_Goods_Good_Id" FromRole="Goods" ToRole="GoodReviews" />
+    <NavigationProperty Name="Producer" Relationship="Self.FK_dbo_Goods_dbo_Producers_Produser_Id" FromRole="Goods" ToRole="Producers" />
+    <NavigationProperty Name="OrderItems" Relationship="Self.FK_dbo_OrderItems_dbo_Goods_Good_Id" FromRole="Goods" ToRole="OrderItems" />
+    <NavigationProperty Name="Categories" Relationship="Self.GoodCategories" FromRole="Goods" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Good_Id" Type="Int32" />
+    <Property Name="Order_Id" Type="Int32" />
+    <NavigationProperty Name="Good" Relationship="Self.FK_dbo_OrderItems_dbo_Goods_Good_Id" FromRole="OrderItems" ToRole="Goods" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_dbo_OrderItems_dbo_Orders_Order_Id" FromRole="OrderItems" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExtraDiscount" Type="Int32" />
+    <Property Name="Discount_Id" Type="Int32" />
+    <Property Name="User_Id" Type="Int32" />
+    <NavigationProperty Name="Discount" Relationship="Self.FK_dbo_Orders_dbo_Discounts_Discount_Id" FromRole="Orders" ToRole="Discounts" />
+    <NavigationProperty Name="OrderItems" Relationship="Self.FK_dbo_OrderItems_dbo_Orders_Order_Id" FromRole="Orders" ToRole="OrderItems" />
+    <NavigationProperty Name="User" Relationship="Self.FK_dbo_Orders_dbo_Users_User_Id" FromRole="Orders" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Producer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Goods" Relationship="Self.FK_dbo_Goods_dbo_Producers_Produser_Id" FromRole="Producers" ToRole="Goods" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="GoodReviews" Relationship="Self.FK_dbo_GoodReviews_dbo_Users_User_Id" FromRole="Users" ToRole="GoodReviews" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_dbo_Orders_dbo_Users_User_Id" FromRole="Users" ToRole="Orders" />
+  </EntityType>
+  <Association Name="FK_dbo_Orders_dbo_Discounts_Discount_Id">
+    <End Role="Discounts" Type="Self.Discount" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Discount_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_GoodReviews_dbo_Goods_Good_Id">
+    <End Role="Goods" Type="Self.Good" Multiplicity="0..1" />
+    <End Role="GoodReviews" Type="Self.GoodReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoodReviews">
+        <PropertyRef Name="Good_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_GoodReviews_dbo_Users_User_Id">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="GoodReviews" Type="Self.GoodReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoodReviews">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Goods_dbo_Producers_Produser_Id">
+    <End Role="Producers" Type="Self.Producer" Multiplicity="0..1" />
+    <End Role="Goods" Type="Self.Good" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Goods">
+        <PropertyRef Name="Produser_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OrderItems_dbo_Goods_Good_Id">
+    <End Role="Goods" Type="Self.Good" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Goods">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="Good_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OrderItems_dbo_Orders_Order_Id">
+    <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Orders_dbo_Users_User_Id">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryActivities">
+    <End Role="Activities" Type="Self.Activity" Multiplicity="*" />
+    <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+  </Association>
+  <Association Name="GoodCategories">
+    <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+    <End Role="Goods" Type="Self.Good" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="NaKarematiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Activities" EntityType="Self.Activity" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Discounts" EntityType="Self.Discount" />
+    <EntitySet Name="GoodReviews" EntityType="Self.GoodReview" />
+    <EntitySet Name="Goods" EntityType="Self.Good" />
+    <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Producers" EntityType="Self.Producer" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_dbo_Orders_dbo_Discounts_Discount_Id" Association="Self.FK_dbo_Orders_dbo_Discounts_Discount_Id">
+      <End Role="Discounts" EntitySet="Discounts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_GoodReviews_dbo_Goods_Good_Id" Association="Self.FK_dbo_GoodReviews_dbo_Goods_Good_Id">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="GoodReviews" EntitySet="GoodReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_GoodReviews_dbo_Users_User_Id" Association="Self.FK_dbo_GoodReviews_dbo_Users_User_Id">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="GoodReviews" EntitySet="GoodReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Goods_dbo_Producers_Produser_Id" Association="Self.FK_dbo_Goods_dbo_Producers_Produser_Id">
+      <End Role="Producers" EntitySet="Producers" />
+      <End Role="Goods" EntitySet="Goods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OrderItems_dbo_Goods_Good_Id" Association="Self.FK_dbo_OrderItems_dbo_Goods_Good_Id">
+      <End Role="Goods" EntitySet="Goods" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OrderItems_dbo_Orders_Order_Id" Association="Self.FK_dbo_OrderItems_dbo_Orders_Order_Id">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Orders_dbo_Users_User_Id" Association="Self.FK_dbo_Orders_dbo_Users_User_Id">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryActivities" Association="Self.CategoryActivities">
+      <End Role="Activities" EntitySet="Activities" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="GoodCategories" Association="Self.GoodCategories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Goods" EntitySet="Goods" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,13 +1,17 @@
-﻿@model NaKaremati.Models.DB.User
-
-
-@using (Html.BeginForm())
-{
-    @Html.LabelForModel()
-    @Html.EditorForModel()
-
-    <p>
-        <input type="submit" value="Create" />
-    </p>
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="main-photo">
+    <div class="main-buttons-container">
+        <div class="main-button-container">
+                @Html.ActionLink("Equipment for RENT", "Index", "Rent", null,
+               new { @class = "btn btn-primary btn-lg btn-block main-button-container" })
+        </div>
+
+        <div class="main-button-container">
+             @Html.ActionLink("Equipment for SELL", "Index", "Rent", null,
+            new { @class = "btn btn-primary btn-lg btn-block main-button-container" })
+        </div>
+    </div>
+ </div>

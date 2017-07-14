@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5fd2ee530e1a4bb19842267da8e15157" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="NaKarematiModel.Activity" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.Category" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.Discount" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.GoodReview" Width="1.5" PointX="10" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.Good" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.OrderItem" Width="1.5" PointX="12.875" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.Order" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.Producer" Width="1.5" PointX="7.875" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NaKarematiModel.User" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="NaKarematiModel.FK_dbo_Orders_dbo_Discounts_Discount_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.FK_dbo_GoodReviews_dbo_Goods_Good_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.FK_dbo_GoodReviews_dbo_Users_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.FK_dbo_Goods_dbo_Producers_Producer_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.FK_dbo_OrderItems_dbo_Goods_Good_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.FK_dbo_OrderItems_dbo_Orders_Order_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.FK_dbo_Orders_dbo_Users_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.CategoryActivities" ManuallyRouted="false" />
+        <AssociationConnector Association="NaKarematiModel.GoodCategories" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NaKarematiModel.Image" Width="1.5" PointX="7.5" PointY="4.125" />
+        <AssociationConnector Association="NaKarematiModel.FK__Images__Good_Id__656C112C" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

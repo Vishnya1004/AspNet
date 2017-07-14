@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NaKarematiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GoodReviews" Relationship="NaKarematiModel.FK_dbo_GoodReviews_dbo_Users_User_Id" FromRole="User" ToRole="GoodReview" />
+    <NavigationProperty Name="Orders" Relationship="NaKarematiModel.FK_dbo_Orders_dbo_Users_User_Id" FromRole="User" ToRole="Order" />
+    <Property Name="Test01" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="NaKarematiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Activities" EntityType="NaKarematiModel.Activity" />
+    <EntitySet Name="Categories" EntityType="NaKarematiModel.Category" />
+    <EntitySet Name="Discounts" EntityType="NaKarematiModel.Discount" />
+    <EntitySet Name="GoodReviews" EntityType="NaKarematiModel.GoodReview" />
+    <EntitySet Name="Goods" EntityType="NaKarematiModel.Good" />
+    <EntitySet Name="OrderItems" EntityType="NaKarematiModel.OrderItem" />
+    <EntitySet Name="Orders" EntityType="NaKarematiModel.Order" />
+    <EntitySet Name="Producers" EntityType="NaKarematiModel.Producer" />
+    <AssociationSet Name="FK_dbo_Orders_dbo_Discounts_Discount_Id" Association="NaKarematiModel.FK_dbo_Orders_dbo_Discounts_Discount_Id">
+      <End Role="Discount" EntitySet="Discounts" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_GoodReviews_dbo_Goods_Good_Id" Association="NaKarematiModel.FK_dbo_GoodReviews_dbo_Goods_Good_Id">
+      <End Role="Good" EntitySet="Goods" />
+      <End Role="GoodReview" EntitySet="GoodReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_GoodReviews_dbo_Users_User_Id" Association="NaKarematiModel.FK_dbo_GoodReviews_dbo_Users_User_Id">
+      <End Role="User" EntitySet="Users" />
+      <End Role="GoodReview" EntitySet="GoodReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Goods_dbo_Producers_Produser_Id" Association="NaKarematiModel.FK_dbo_Goods_dbo_Producers_Produser_Id">
+      <End Role="Producer" EntitySet="Producers" />
+      <End Role="Good" EntitySet="Goods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OrderItems_dbo_Goods_Good_Id" Association="NaKarematiModel.FK_dbo_OrderItems_dbo_Goods_Good_Id">
+      <End Role="Good" EntitySet="Goods" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OrderItems_dbo_Orders_Order_Id" Association="NaKarematiModel.FK_dbo_OrderItems_dbo_Orders_Order_Id">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Orders_dbo_Users_User_Id" Association="NaKarematiModel.FK_dbo_Orders_dbo_Users_User_Id">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryActivities" Association="NaKarematiModel.CategoryActivities">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="GoodCategories" Association="NaKarematiModel.GoodCategories">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Good" EntitySet="Goods" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Categories" Relationship="NaKarematiModel.CategoryActivities" FromRole="Activity" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Activities" Relationship="NaKarematiModel.CategoryActivities" FromRole="Category" ToRole="Activity" />
+    <NavigationProperty Name="Goods" Relationship="NaKarematiModel.GoodCategories" FromRole="Category" ToRole="Good" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Percent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="NaKarematiModel.FK_dbo_Orders_dbo_Discounts_Discount_Id" FromRole="Discount" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="GoodReview">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Body" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Good_Id" Type="Int32" />
+    <Property Name="User_Id" Type="Int32" />
+    <NavigationProperty Name="Good" Relationship="NaKarematiModel.FK_dbo_GoodReviews_dbo_Goods_Good_Id" FromRole="GoodReview" ToRole="Good" />
+    <NavigationProperty Name="User" Relationship="NaKarematiModel.FK_dbo_GoodReviews_dbo_Users_User_Id" FromRole="GoodReview" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Good">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="RentPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="DepositPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Weigth" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Produser_Id" Type="Int32" />
+    <NavigationProperty Name="GoodReviews" Relationship="NaKarematiModel.FK_dbo_GoodReviews_dbo_Goods_Good_Id" FromRole="Good" ToRole="GoodReview" />
+    <NavigationProperty Name="Producer" Relationship="NaKarematiModel.FK_dbo_Goods_dbo_Producers_Produser_Id" FromRole="Good" ToRole="Producer" />
+    <NavigationProperty Name="OrderItems" Relationship="NaKarematiModel.FK_dbo_OrderItems_dbo_Goods_Good_Id" FromRole="Good" ToRole="OrderItem" />
+    <NavigationProperty Name="Categories" Relationship="NaKarematiModel.GoodCategories" FromRole="Good" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="OrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Good_Id" Type="Int32" />
+    <Property Name="Order_Id" Type="Int32" />
+    <NavigationProperty Name="Good" Relationship="NaKarematiModel.FK_dbo_OrderItems_dbo_Goods_Good_Id" FromRole="OrderItem" ToRole="Good" />
+    <NavigationProperty Name="Order" Relationship="NaKarematiModel.FK_dbo_OrderItems_dbo_Orders_Order_Id" FromRole="OrderItem" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExtraDiscount" Type="Int32" />
+    <Property Name="Discount_Id" Type="Int32" />
+    <Property Name="User_Id" Type="Int32" />
+    <NavigationProperty Name="Discount" Relationship="NaKarematiModel.FK_dbo_Orders_dbo_Discounts_Discount_Id" FromRole="Order" ToRole="Discount" />
+    <NavigationProperty Name="OrderItems" Relationship="NaKarematiModel.FK_dbo_OrderItems_dbo_Orders_Order_Id" FromRole="Order" ToRole="OrderItem" />
+    <NavigationProperty Name="User" Relationship="NaKarematiModel.FK_dbo_Orders_dbo_Users_User_Id" FromRole="Order" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Producer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Goods" Relationship="NaKarematiModel.FK_dbo_Goods_dbo_Producers_Produser_Id" FromRole="Producer" ToRole="Good" />
+  </EntityType>
+  <Association Name="FK_dbo_Orders_dbo_Discounts_Discount_Id">
+    <End Type="NaKarematiModel.Discount" Role="Discount" Multiplicity="0..1" />
+    <End Type="NaKarematiModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Discount_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_GoodReviews_dbo_Goods_Good_Id">
+    <End Type="NaKarematiModel.Good" Role="Good" Multiplicity="0..1" />
+    <End Type="NaKarematiModel.GoodReview" Role="GoodReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Good">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoodReview">
+        <PropertyRef Name="Good_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_GoodReviews_dbo_Users_User_Id">
+    <End Type="NaKarematiModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="NaKarematiModel.GoodReview" Role="GoodReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GoodReview">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Goods_dbo_Producers_Produser_Id">
+    <End Type="NaKarematiModel.Producer" Role="Producer" Multiplicity="0..1" />
+    <End Type="NaKarematiModel.Good" Role="Good" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Good">
+        <PropertyRef Name="Produser_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OrderItems_dbo_Goods_Good_Id">
+    <End Type="NaKarematiModel.Good" Role="Good" Multiplicity="0..1" />
+    <End Type="NaKarematiModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Good">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="Good_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OrderItems_dbo_Orders_Order_Id">
+    <End Type="NaKarematiModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="NaKarematiModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderItem">
+        <PropertyRef Name="Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Orders_dbo_Users_User_Id">
+    <End Type="NaKarematiModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="NaKarematiModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryActivities">
+    <End Type="NaKarematiModel.Activity" Role="Activity" Multiplicity="*" />
+    <End Type="NaKarematiModel.Category" Role="Category" Multiplicity="*" />
+  </Association>
+  <Association Name="GoodCategories">
+    <End Type="NaKarematiModel.Category" Role="Category" Multiplicity="*" />
+    <End Type="NaKarematiModel.Good" Role="Good" Multiplicity="*" />
+  </Association>
+</Schema>
