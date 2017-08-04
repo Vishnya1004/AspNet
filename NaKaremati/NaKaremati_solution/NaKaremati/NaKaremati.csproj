@@ -386,6 +386,8 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Rent\_ViewGoods.cshtml" />
+    <Content Include="Views\Rent\GoodDetails.cshtml" />
+    <Content Include="Views\Rent\_ViewGoodsListImg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

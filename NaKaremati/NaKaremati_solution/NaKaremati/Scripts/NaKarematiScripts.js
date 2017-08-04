@@ -3,4 +3,10 @@
     $('#inputBoxSearch').click(function (e) {
         this.value = "";
     })
+
+
+
+
 });
+
+

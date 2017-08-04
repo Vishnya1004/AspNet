@@ -1,0 +1,60 @@
+﻿@model NaKaremati.Models.GoodVM
+@{
+    Layout = "~/Views/Shared/_LayoutRent.cshtml";
+}
+
+
+<body>
+    <div class="good-details-main">Left pannel - links to another goods
+    @Model.Good.Id
+        @Model.SelectedCategoryId
+
+        @Html.Action("GetGoodsExceptSelected", new { selectedGoodId = Model.Good.Id, categoryId = Model.SelectedCategoryId} )
+    </div>
+
+    <div id="mycarousel" class="carousel slide good-details-main" data-ride="carousel" style="margin-top:-15px" >
+        <ol class="carousel-indicators">
+            <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#mycarousel" data-slide-to="1"></li>
+            <li data-target="#mycarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="~/Content/img/bp_blackDiamond_60.jpg" />
+                <div class="carousel-caption">
+                    <p>Text 1</p>
+                </div>
+            </div>
+            <div class="item" >
+                <img src="~/Content/img/ct_grivel.jpg" />
+                <div class="carousel-caption">
+                    <p>Text 1</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/img/rc_ponchobagTerra.jpg" />
+                <div class="carousel-caption">
+                    <p>Text 1</p>
+                </div>
+            </div>
+        </div>
+
+        <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="good-details-main">
+        <ul>
+            <li>@Model.Good.Name</li>
+            <li>@Model.Good.Description</li>
+        </ul>
+    </div>
+
+
+</body>
+

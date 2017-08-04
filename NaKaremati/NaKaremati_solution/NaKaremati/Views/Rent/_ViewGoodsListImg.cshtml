@@ -1,0 +1,11 @@
+﻿@model List<NaKaremati.Models.GoodVM>
+<div class="good-details-main" >
+    <ul>
+        @foreach (var goodVM in @Model)
+        {
+            <li>
+                <img src="@string.Format("\\Content\\img\\{0}", @goodVM.Images.First().Name)" alt="Image not found" />
+            </li>
+        }
+    </ul>
+</div>

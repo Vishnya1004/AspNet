@@ -24,20 +24,13 @@
                 <th>@goodVM.Good.RentPrice <span class="big-sign">&#8372</span> </th>
                 <th>@goodVM.Good.RentPrice <span class="big-sign">&#8372</span> </th>
                 <th>
-                    <img src="@string.Format("Content\\img\\{0}", @goodVM.Images.First().Name)" alt="Image not found" />
-                    @*@foreach (var img in goodVM.Images)
-                    {
-                        <img src="@string.Format("Content\\img\\{0}", @img.Name)" alt="Image not found" />
-                    }*@
+                    <img src="@string.Format("/Content/img/{0}", @goodVM.Images.First().Name)" alt="Image not found" />
                 </th>
                 <th>
-                    <button class="button-cart"><img src="~/Content/img/cart.jpg" alt="No image"/></button>
-                    
+                    <button class="button-cart"><img src="/Content/img/cart.jpg" alt="No image"/></button>
                 </th>
                 <th>
-                    <a class="btn btn-primary" role="button">
-                        Details
-                    </a>
+                    @Html.ActionLink("Details", "GetGoodDetails", "Rent", new { goodId = goodVM.Good.Id, categoryId = goodVM.SelectedCategoryId }, new { @class = "btn btn-primary" })
                 </th>
             </tr>
         }

@@ -119,9 +119,12 @@ font-weight:600;
 border: none;
 }
 
-  
+.good-details-main {
+float:left;
+position:relative;
+width:30%;
+}
 
- 
 
 
 

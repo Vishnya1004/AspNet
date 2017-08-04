@@ -26,7 +26,6 @@ namespace NaKaremati.Controllers
             return View(activitiesVM);
         }
 
-
         public ActionResult GetGoodsByCategory(int categoryId = 0)
         {
             Category category = (Category)db.Categories.Include("Goods").Where(c => c.Id == categoryId).First();
@@ -35,12 +34,39 @@ namespace NaKaremati.Controllers
      
             foreach (Good good in goods)
             {
-                goodsVM.Add(new GoodVM(good.Id));
+                goodsVM.Add(new GoodVM(good.Id, categoryId));
             }
 
             return PartialView("_ViewGoods", goodsVM);
         }
 
-   
+        public ActionResult GetGoodDetails(int goodId = 0, int categoryId = 0)
+        {
+            GoodVM goodVM = new GoodVM(goodId, categoryId);
+            
+            return View("GoodDetails", goodVM);
+        }
+
+
+        public ActionResult GetGoodsExceptSelected(int selectedGoodId = 0, int categoryId = 0)
+        {
+            Category category = (Category)db.Categories.Include("Goods").Where(c => c.Id == categoryId).First();
+            List<Good> goods = category.Goods.ToList();
+            List<GoodVM> goodsVM = new List<GoodVM>();
+
+            foreach (Good good in goods)
+            {
+                if(good.Id != selectedGoodId)
+                {
+                    goodsVM.Add(new GoodVM(good.Id, categoryId));
+                }
+                
+            }
+
+
+            return PartialView("_ViewGoodsListImg", goodsVM);
+        }
+
+
     }
 }
