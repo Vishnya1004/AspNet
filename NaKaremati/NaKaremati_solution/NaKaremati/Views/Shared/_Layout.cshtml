@@ -16,9 +16,12 @@
             <li>@Html.ActionLink("Useful articles", "Articles", "Home", new { area = "" }, null)</li>
             <li>@Html.ActionLink("Our lovely partners", "Partners", "Home", new { area = "" }, null)</li>
             <li>@Html.ActionLink("Be our partners", "BePartners", "Home", new { area = "" }, null)</li>
-            <li>@Html.ActionLink("Sign in", "Autorization", "Home", new { area = "" }, null)</li>
+            @Html.Partial("_LoginPartial")
         </ul>
+       
+       
     </div> 
+  
     
     
 

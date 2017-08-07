@@ -56,14 +56,5 @@ namespace NaKaremati.Controllers
             return View();
         }
 
-
-        public ActionResult Autorization()
-        {
-            ViewBag.Title = "Autorization Page";
-
-            return View();
-        }
-
-
     }
 }
